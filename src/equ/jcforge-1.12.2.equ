@@ -2,6 +2,16 @@
 # EQUIVALENCIAS PARA MINECRAFT 1.12.2 (FORGE)
 # =====================================================================
 
+# --- IMPORTS (Se inyectan al inicio del archivo) ---
+IMPORT_PLAYER :: import net.minecraft.entity.player.EntityPlayer;
+IMPORT_WORLD :: import net.minecraft.world.World;
+IMPORT_ITEM :: import net.minecraft.item.ItemStack;
+IMPORT_MATERIAL :: import net.minecraft.init.Materials;
+IMPORT_BLOCKPOS :: import net.minecraft.util.math.BlockPos;
+IMPORT_CHAT :: import net.minecraft.util.text.ChatComponentText;
+IMPORT_INVENTORY :: import net.minecraft.entity.player.InventoryPlayer;
+IMPORT_LOCATION :: import net.minecraft.util.math.BlockPos;
+
 # --- JUGADOR Y MUNDO ---
 GET_WORLD(usr) :: usr.getWorld()
 GET_PLAYER(name) :: Bukkit.getPlayer(name)
