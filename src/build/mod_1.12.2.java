@@ -1,11 +1,16 @@
 package net.javacraft.testmod;
 
 // Estos imports serán reemplazados por los de cada versión
-IMPORT_PLAYER
-IMPORT_WORLD
-IMPORT_ITEM
-IMPORT_CHAT
-IMPORT_INVENTORY
+import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraft.world.World;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraft.util.text.ChatComponentText;
+
+import net.minecraft.entity.player.InventoryPlayer;
+
 
 public class ModActions {
     
