@@ -15,6 +15,13 @@ IMPORT_UTIL :: import net.minecraft.Util;
 IMPORT_REGISTRY :: import net.minecraft.core.Registry;
 IMPORT_RESOURCELOCATION :: import net.minecraft.resources.ResourceLocation;
 
+# --- SEGURIDAD (Inyección en UNA LÍNEA) ---
+# Este código agrega más seguridad, en el sentido, de que notifica al juego, que Javacraft Engine, está activo, por si alguien hace un mod sin Forge, y les salga Vanilla
+
+# PostData: Si quieren tener mods más pesados, les recomendaría usar Javacraft, ya que no modifica el código del juego en tiempo de ejecución, sino que copiaría los .equ, a Java, que podemos compilar con Javac, y obtener más FPS
+JC_ENGINE() :: static {try{net.minecraft.client.Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("§6[JC Engine v1.0.0] §aCargado con éxito"));}catch(Exception e){}try{net.minecraft.client.Minecraft.getMinecraft().debugInfo = "Javacraft Engine v1.0.0";}catch(Exception e){}}
+
+
 # --- JUGADOR Y MUNDO ---
 GET_WORLD(usr) :: usr.getLevel()
 GET_PLAYER(name) :: Bukkit.getPlayer(name)
