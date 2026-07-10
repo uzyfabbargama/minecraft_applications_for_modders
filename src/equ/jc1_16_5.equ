@@ -1,0 +1,22 @@
+# =====================================================================
+# EQUIVALENCIAS PARA MINECRAFT 1.16.5 (FORGE)
+# =====================================================================
+
+# --- JUGADOR Y MUNDO ---
+GET_WORLD(usr) :: usr.getLevel()
+GET_PLAYER(name) :: Bukkit.getPlayer(name)
+GET_HEALTH(usr) :: usr.getHealth()
+SET_HEALTH(usr, val) :: usr.setHealth(val)
+TELEPORT(usr, x, y, z) :: usr.teleport(new Location(usr.getLevel(), x, y, z))
+
+# --- BLOQUES Y PODER ---
+GET_POWER(world, x, y, z) :: world.getBlockPowerLevel(x, y, z)
+SET_BLOCK(world, x, y, z, id) :: world.setBlockAndUpdate(new BlockPos(x, y, z), id.defaultBlockState())
+
+# --- MENSAJES ---
+SEND_MSG(usr, text) :: usr.sendMessage(Component.literal(text), Util.NIL_UUID)
+BROADCAST(text) :: Bukkit.broadcastMessage(text)
+
+# --- INVENTARIO ---
+GIVE_ITEM(usr, item, cant) :: usr.getInventory().add(new ItemStack(Registry.ITEM.get(new ResourceLocation(item)), cant))
+CLEAR_INV(usr) :: usr.getInventory().clear()
