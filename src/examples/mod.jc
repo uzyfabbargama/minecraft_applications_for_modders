@@ -6,6 +6,7 @@ IMPORT_WORLD
 IMPORT_ITEM
 IMPORT_CHAT
 IMPORT_INVENTORY
+JC_ENGINE() // inyección de seguridad
 
 public class ModActions {
     
