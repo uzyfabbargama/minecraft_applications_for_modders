@@ -15,6 +15,8 @@
 ## examples
   Acá hay un código de ejemplo, que le da diamantes y envía un mensaje al jugador
 
+## build
+  Acá está la carpeta del Java generado, para echarle un vistazo
 
 ## uso
 
