@@ -2,6 +2,19 @@
 # EQUIVALENCIAS PARA MINECRAFT 1.16.5 (FORGE)
 # =====================================================================
 
+# --- IMPORTS (Los cambios más sutiles: Component vs TextComponent) ---
+IMPORT_PLAYER :: import net.minecraft.entity.player.PlayerEntity;
+IMPORT_WORLD :: import net.minecraft.world.level.Level;
+IMPORT_ITEM :: import net.minecraft.world.item.ItemStack;
+IMPORT_ITEMS :: import net.minecraft.world.item.Items;
+IMPORT_BLOCKPOS :: import net.minecraft.core.BlockPos;
+IMPORT_CHAT :: import net.minecraft.network.chat.Component;
+IMPORT_CHAT_LITERAL :: import net.minecraft.network.chat.TextComponent;
+IMPORT_INVENTORY :: import net.minecraft.world.entity.player.Inventory;
+IMPORT_UTIL :: import net.minecraft.Util;
+IMPORT_REGISTRY :: import net.minecraft.core.Registry;
+IMPORT_RESOURCELOCATION :: import net.minecraft.resources.ResourceLocation;
+
 # --- JUGADOR Y MUNDO ---
 GET_WORLD(usr) :: usr.getLevel()
 GET_PLAYER(name) :: Bukkit.getPlayer(name)
