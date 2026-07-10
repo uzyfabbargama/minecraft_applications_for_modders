@@ -13,7 +13,7 @@
 5. Haz un Pull Request.
 
 ## Reglas importantes
-- **Nombres de archivos**: `forge-1.12.2.equ`, `fabric-1.20.4.equ`, etc.
+- **Nombres de archivos**: `jcforge-1.12.2.equ`, `jcfabric-1.20.4.equ`, etc.
 - **No rompas la sintaxis**: Si una macro funciona, no la cambies; agrega nuevas si es necesario.
 - **Documenta**: Explica qué cambia entre versiones si es necesario.
 
