@@ -1,0 +1,33 @@
+package net.javacraft.testmod;
+
+// Estos imports serán reemplazados por los de cada versión
+IMPORT_PLAYER
+IMPORT_WORLD
+IMPORT_ITEM
+IMPORT_CHAT
+IMPORT_INVENTORY
+
+public class ModActions {
+    
+    public static void giveDiamond(Player jugador) {
+        // Java puro con macros de Javacraft
+        if (jugador.isAlive()) {
+            GIVE_ITEM(jugador, "minecraft:diamond", 1);
+            SEND_MSG(jugador, "¡Has recibido un diamante!");
+        }
+    }
+    
+    public static void teleportHome(Player jugador) {
+        // Esto funciona en cualquier versión
+        double x = 0.0;
+        double y = 70.0;
+        double z = 0.0;
+        TELEPORT(jugador, x, y, z);
+        SEND_MSG(jugador, "Teletransportado al spawn!");
+    }
+    
+    public static void clearAndNotify(Player jugador) {
+        CLEAR_INV(jugador);
+        SEND_MSG(jugador, "Inventario limpiado.");
+    }
+}
