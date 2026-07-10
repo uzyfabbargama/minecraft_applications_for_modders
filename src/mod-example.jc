@@ -1,0 +1,11 @@
+package net.javacraft.testmod;
+
+public class AccionMod {
+    public static void ejecutar(Player jugador, String nombreItem) {
+        // Código híbrido: Mezcla de Java Puro con Macros JC
+        if (jugador.isOnline()) {
+            GIVE_ITEM(jugador, nombreItem, 1);
+            SEND_MSG(jugador, "¡Recibiste tu item de forma branchless!");
+        }
+    }
+}
