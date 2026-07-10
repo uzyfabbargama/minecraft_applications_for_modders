@@ -16,3 +16,4 @@ SET_HEALTH(usr, val) :: usr.setHealth(val)
 #  mayúsculas para las funciones de reemplazo
 #  minúsculas y entre paréntesis, para los argumentos
 #  del lado izquierdo del " :: " son el lado que escribe el usuario, y del lado derecho, los que escribe el programa en equivalencia
+#  TODA MACRO DEBE TENER PARÉNTESIS, INCLUSO SI ESTÁN VACÍOS
