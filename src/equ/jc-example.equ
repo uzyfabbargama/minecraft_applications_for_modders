@@ -1,0 +1,18 @@
+# =====================================================================
+# SINTAXIS UNIFICADA JAVACRAFT (Mapeo Base para Versiones Libres)
+# =====================================================================
+GET_WORLD(usr) :: usr.getWorld()
+GET_PLAYER(name) :: Bukkit.getPlayer(name)
+GET_POWER(world, x, y, z) :: world.getBlockPowerLevel(x, y, z)
+SET_BLOCK(world, x, y, z, id) :: world.getBlockAt(x, y, z).setType(Material.id)
+SEND_MSG(usr, text) :: usr.sendMessage(new ChatComponentText(text))
+BROADCAST(text) :: Bukkit.broadcastMessage(text)
+GIVE_ITEM(usr, item, cant) :: usr.getInventory().addItem(new ItemStack(Material.item, cant))
+CLEAR_INV(usr) :: usr.getInventory().clear()
+TELEPORT(usr, x, y, z) :: usr.teleport(new Location(usr.getWorld(), x, y, z))
+GET_HEALTH(usr) :: usr.getHealth()
+SET_HEALTH(usr, val) :: usr.setHealth(val)
+#reglas:
+#  mayúsculas para las funciones de reemplazo
+#  minúsculas y entre paréntesis, para los argumentos
+#  del lado izquierdo del " :: " son el lado que escribe el usuario, y del lado derecho, los que escribe el programa en equivalencia
