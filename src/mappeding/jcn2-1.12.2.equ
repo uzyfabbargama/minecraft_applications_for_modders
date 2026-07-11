@@ -1,0 +1,22 @@
+# =====================================================================
+# JAVACRAFT NATIVO (JCN) - MINECRAFT 1.12.2 VANILLA PURO
+# Sintaxis unificada directa al binario ofuscado (Zero Abstracción)
+# =====================================================================
+
+# --- IMPORTS NATIVOS ---
+IMPORT_PLAYER() :: import net.minecraft.entity.player.EntityPlayer;
+IMPORT_WORLD() :: import net.minecraft.world.World;
+IMPORT_CHAT() :: import net.minecraft.util.text.TextComponentString;
+
+# --- SEGURIDAD Y NOTIFICACIÓN (Vanilla Ofuscado 1.12.2) ---
+# Usa los campos reales del binario para inyectar en caliente sin romper el hilo
+JC_ENGINE() :: static {try{net.minecraft.client.Minecraft.z().r.a().a(new net.minecraft.util.text.TextComponentString("§6[JC Engine v1.0.0] §aCargado en Vanilla"));}catch(Exception e){}try{net.minecraft.client.Minecraft.z().B = "Javacraft Engine v1.0.0";}catch(Exception e){}}
+
+# --- JUGADOR Y MUNDO NATIVO ---
+GET_WORLD(usr) :: usr.l
+GET_HEALTH(usr) :: usr.cd()
+SET_HEALTH(usr, val) :: usr.c(val)
+
+# --- MENSAJES DIRECTOS ---
+# Empaqueta el string en el componente nativo que espera el método 'a'
+SEND_MSG(usr, text) :: usr.a(new net.minecraft.util.text.TextComponentString(text))
