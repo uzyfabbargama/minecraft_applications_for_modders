@@ -1,7 +1,7 @@
 import sys
 import os
 
-archivo_api = "jcn_automatico_perfecto.equ"
+archivo_api = "jcn_automatico_completo.equ"
 
 if not os.path.exists(archivo_api):
     print(f"[-] No se encuentra el mapa de la API: {archivo_api}")
