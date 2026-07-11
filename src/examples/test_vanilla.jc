@@ -1,0 +1,14 @@
+IMPORT_PLAYER()
+IMPORT_WORLD()
+IMPORT_CHAT()
+
+public class ModNativo {
+    JC_ENGINE()
+
+    public void verificarJugador(EntityPlayer jugador) {
+        if (GET_HEALTH(jugador) < 5.0f) {
+            SEND_MSG(jugador, "§c[JC] ¡Tu vida es baja en la base del sistema!");
+            SET_HEALTH(jugador, 20.0f);
+        }
+    }
+}
