@@ -1,0 +1,82 @@
+# JCForge 1.13 — Starter equivalence table for Javacraft
+# WARNING: 1.13 introduced big mapping/name changes; this is a starter template with
+# multiple plausible variants and comments. You MUST verify each expansion against
+# the exact Forge/MCP mapping you target (and the target runtime: server vs client).
+#
+# Format: MACRO(params) :: Java replacement
+# The generator (javacraft.py) captures the replacement until end-of-line.
+# If you need multiline expansions, write them as a single line with semicolons
+# or ensure your generator supports multiline .equ entries.
+#
+# Top-level advice:
+# - For Forge 1.13 you will likely need to refer to the Forge MDK for that version
+#   and use the MCP names present in the decompiled sources used by modders at the time.
+# - If you prefer to support multiple mappings, add commented alternatives below
+#   and pick the one that matches your environment.
+
+# ------------------ IMPORTS (choose / adapt to your mappings) ------------------
+# Common MCP-style import candidates (pick the correct one for your mapping):
+IMPORT_PLAYER() :: import net.minecraft.entity.player.EntityPlayer;
+# Alternative for server-distinct class (if needed):
+# IMPORT_SERVER_PLAYER() :: import net.minecraft.entity.player.EntityPlayerMP;
+
+IMPORT_ITEMSTACK() :: import net.minecraft.item.ItemStack;
+# Items container (older style enums/constants) — present in many mappings:
+IMPORT_ITEMS() :: import net.minecraft.init.Items;
+
+# Text components for chat messages (MCP names):
+IMPORT_TEXTCOMP() :: import net.minecraft.util.text.TextComponentString;
+# Alternative newer style component interface (if mapping differs):
+# IMPORT_ITEXT() :: import net.minecraft.util.text.ITextComponent;
+
+IMPORT_RESOURCELOC() :: import net.minecraft.util.ResourceLocation;
+
+# ------------------ ENGINE / SAFETY ------------------
+JC_ENGINE() :: // JC_ENGINE() — placeholder for any engine-specific injections
+
+# ------------------ CORE MACROS ------------------
+# SEND_MSG(player, text)
+# Common expansion for EntityPlayer using TextComponentString:
+SEND_MSG(player, text) :: player.sendMessage(new TextComponentString(text));
+# Alternative signature sometimes used: player.sendMessage(ITextComponent, UUID)
+# Example (commented):
+# SEND_MSG(player, text) :: player.sendMessage(new TextComponentString(text), player.getUniqueID());
+
+# GIVE_ITEM(player, itemId, amount)
+# Two common patterns: resource-location/registry lookup or Items enum-based.
+# Pattern A: Registry/ResourceLocation lookup (if your MCP/mapping uses registries)
+GIVE_ITEM(player, itemId, amount) :: player.inventory.add(new ItemStack(net.minecraft.util.registry.Registry.ITEM.get(new ResourceLocation(itemId)), amount));
+# Pattern B: direct Items enum (if you want to hardcode common items like "diamond")
+# Example usage where itemId is a literal name that maps to Items.DIAMOND (you must adapt):
+# GIVE_ITEM(player, itemName, amount) :: player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
+
+# TELEPORT(player, x, y, z)
+# Several variants exist depending on class and mapping. Common simple one:
+TELEPORT(player, x, y, z) :: player.setPositionAndUpdate(x, y, z);
+# Server-side alternative (if you need to use the player's network connection):
+# TELEPORT(player, x, y, z) :: player.connection.setPlayerLocation(x, y, z, player.rotationYaw, player.rotationPitch);
+
+# CLEAR_INV(player)
+CLEAR_INV(player) :: player.inventory.clear();
+# Alternative (clearContent / clearInventory depending on mapping):
+# CLEAR_INV(player) :: player.inventory.clearContent();
+
+# ADD_ITEM_TO_INVENTORY(player, itemstack)
+ADD_ITEM_TO_INVENTORY(player, itemstack) :: player.inventory.addItemStackToInventory(itemstack);
+
+# IS_ALIVE(player) and IS_ONLINE(player) helpers (adapt names if mapping differs)
+IS_ALIVE(player) :: player.isEntityAlive();
+IS_ONLINE(player) :: player.isOnline();
+
+# ------------------ NOTES & TESTING ------------------
+# - After creating this file, run the transpilation and compile the generated Java
+#   against a Forge 1.13 development environment (MDK/IDE) and fix any symbol names
+#   or method signatures reported by the compiler.
+# - If Registry.* usage above does not match your mapping, replace with the correct
+#   registry accessor for items in your environment (e.g., net.minecraft.init.Items, or
+#   net.minecraft.registries.Registries.ITEM in other mappings).
+# - If you want, I can attempt a second pass adapting each expansion to a specific
+#   mapping set (MCP mapping snapshot for Forge 1.13). Provide the mapping name or
+#   a reference JAR/MDK and I will update the .equ to match.
+#
+# End of starter jcforge-1.13.equ
