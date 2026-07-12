@@ -1,3 +1,4 @@
+# AUTOGENERADO - no tocar
 # =====================================================================
 # MOTOR INTEGRADO JAVACRAFT - FILOSOFÍA DE BAJO NIVEL (REGISTROS)
 # =====================================================================
