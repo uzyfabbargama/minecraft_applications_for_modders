@@ -1,8 +1,8 @@
 # 🚀 Javacraft (JC) — Zero-Overhead Multi-Version Transpiler for Minecraft Mods
 
-Javacraft es un transpilador de ultra-bajo nivel desarrollado bajo una filosofía de diseño basada en registros lógicos y punteros planos de memoria. Su objetivo es resolver de raíz el problema histórico más grande en el desarrollo de mods de Minecraft (Forge, Fabric, NeoForge): **la fragmentación de versiones y APIs.**
+Javacraft es un transpilador de ultra-bajo nivel desarrollado bajo una filosofía de diseño basada en registros lógicos y punteros planos de memoria. Su objetivo es resolver de raíz el problema [...]
 
-Con Javacraft, escribís la lógica de tu mod **una sola vez** en un archivo híbrido `.jc` y, mediante tablas de equivalencias intercambiables `.equ`, generás código Java puro, optimizado y nativo para cualquier versión del juego (1.12.2, 1.16.5, 1.20.4, etc.) en milisegundos.
+Con Javacraft, escribís la lógica de tu mod **una sola vez** en un archivo híbrido `.jc` y, mediante tablas de equivalencias intercambiables `.equ`, generás código Java puro, optimizado y nati[...]
 
 ---
 
@@ -11,18 +11,18 @@ Con Javacraft, escribís la lógica de tu mod **una sola vez** en un archivo hí
 El proyecto se divide en tres pilares fundamentales que trabajan en pipeline lineal:
 
 ### 1. ¿Qué hace `macrosy` (`macrosy6.py`)?
-Es nuestro preprocesador y expansor de macros estructurales de bajo nivel. Inspirado en la sintaxis clásica de NASM (Netwide Assembler), `macrosy` procesa directivas como `%macro` y `%endmacro` de forma plana y lineal. 
-En lugar de depender de pesados intérpretes, utiliza una arquitectura de reemplazo textual limpia para inyectar bloques lógicos repetitivos o generar la estructura base del transpilador a partir de plantillas sin generar sobrecarga en el sistema.
+Es nuestro preprocesador y expansor de macros estructurales de bajo nivel. Inspirado en la sintaxis clásica de NASM (Netwide Assembler), `macrosy` procesa directivas como `%macro` y `%endmacro` d[...]
+En lugar de depender de pesados intérpretes, utiliza una arquitectura de reemplazo textual limpia para inyectar bloques lógicos repetitivos o generar la estructura base del transpilador a partir[...]
 
 ### 2. ¿Por qué Python?
-Porque no queríamos combatir la burocracia corporativa de Java usando más Java. Python nos permite manipular el código fuente como buffers de texto puros y cadenas de bytes a gran velocidad. Al ser un script directo ejecutado desde la terminal (ideal para entornos ligeros como Lubuntu), no requiere tiempos de compilación previos, interfaces pesadas, ni suites corporativas que devoren gigabytes de memoria RAM o desgasten discos mecánicos (HDD). Es computación limpia, quirúrgica y directa.
+Porque no queríamos combatir la burocracia corporativa de Java usando más Java. Python nos permite manipular el código fuente como buffers de texto puros y cadenas de bytes a gran velocidad. Al[...]
 
 ### 3. ¿Qué hace `javacraft.py`?
-Es el núcleo del transpilador. Implementa un analizador léxico ciego guiado por un sistema de **Registros Simulados de Trabajo** (`h1`, `h2`, `dedos`) y un algoritmo de acumulación por desplazamiento de bits llamado **Xorid Hash** (`h2 ^= h1; h2 <<= 1`).
-* **Bypass de Compatibilidad Total:** Gracias a su *Filtro Antipájaros* integrado, el motor detecta si una palabra es una macro en mayúsculas. Si lo es, la traduce. Si encuentra código Java nativo (operadores de bits, llaves, declaraciones complejas), el analizador realiza un rollback instantáneo y copia el carácter intacto. Esto permite mezclar libremente macros de JC y Java optimizado en el mismo archivo.
+Es el núcleo del transpilador. Implementa un analizador léxico ciego guiado por un sistema de **Registros Simulados de Trabajo** (`h1`, `h2`, `dedos`) y un algoritmo de acumulación por desplaza[...]
+* **Bypass de Compatibilidad Total:** Gracias a su *Filtro Antipájaros* integrado, el motor detecta si una palabra es una macro en mayúsculas. Si lo es, la traduce. Si encuentra código Java nat[...]
 
 ### 4. El Entorno de Equivalencias (`.equ`)
-El archivo `.equ` es la ROM de mapeos del sistema. No es código; es una tabla plana que define cómo se traduce cada macro de Javacraft a la sintaxis real de una versión específica de Minecraft. 
+El archivo `.equ` es la ROM de mapeos del sistema. No es código; es una tabla plana que define cómo se traduce cada macro de Javacraft a la sintaxis real de una versión específica de Minecraft[...]
 Es **100% modificable por el usuario**. Si Mojang cambia el nombre de un método en la versión 1.21, no tocás tu código fuente; solo actualizás una línea en tu `.equ`.
 
 
@@ -118,6 +118,28 @@ python3 javacraft.py src/mod.jc build/generated/1.16.5/mod.java src/equ/1.16.5.e
 ```
 
 ¡Zero overhead en tiempo de ejecución, compatibilidad absoluta en tiempo de compilación!
+
+## Organización de los archivos .equ
+
+Para facilitar contribuciones y separar variantes por plataforma, ahora las equivalencias (.equ) se organizan en subcarpetas bajo src/equ/. La estructura recomendada es:
+
+```
+src/equ/
+  forge/    # .equ orientados a Forge (MCP/Intermediary/Yarn según metadata)
+  fabric/   # .equ orientados a Fabric (Yarn/Intermediary names)
+  bukkit/   # (opcional) .equ para Bukkit/Spigot plugin APIs
+  index.json  # índice con metadatos de las .equ disponibles
+```
+
+Cada archivo .equ debe incluir un encabezado de metadatos comentado (name, platform, minecraft_version, mapping, author, date) para facilitar su uso y trazabilidad.
+
+Ejemplo de uso con la nueva ubicación:
+
+```
+python3 src/motor/javacraft.py src/examples/mod.jc build/generated/1.20.1/mod.java src/equ/forge/jcforge-1.20.1.equ
+```
+
+Si quieres que reorganice las .equ existentes en otras plataformas o añada más metadatos al index.json, dímelo y lo hago.
 
 ## ¡¡ATENCIÓN!!
 
