@@ -1,5 +1,5 @@
 {
-  "equ_index": [
+  "equforge_index": [
     {
       "filename": "src/equ/forge/jcforge-1.13.equ",
       "platform": "forge",
@@ -13,6 +13,33 @@
       "filename": "src/equ/forge/jcforge-1.20.1.equ",
       "platform": "forge",
       "minecraft_version": "1.20.1",
+      "mapping": "starter",
+      "description": "Starter template with modern API shapes; verify for your mapping (Intermediary/Yarn/MCP).",
+      "author": "uzyfabbargama",
+      "date": "2026-07-12"
+    },
+    {
+      "filename": "src/equ/forge/jcforge-1.12.2.equ",
+      "platform": "forge",
+      "minecraft_version": "1.12.2",
+      "mapping": "starter",
+      "description": "Starter template with modern API shapes; verify for your mapping (Intermediary/Yarn/MCP).",
+      "author": "uzyfabbargama",
+      "date": "2026-07-12"
+    },
+    {
+      "filename": "src/equ/forge/jcforge-1.14.4.equ",
+      "platform": "forge",
+      "minecraft_version": "1.14.4",
+      "mapping": "starter",
+      "description": "Starter template with modern API shapes; verify for your mapping (Intermediary/Yarn/MCP).",
+      "author": "uzyfabbargama",
+      "date": "2026-07-12"
+    },
+    {
+      "filename": "src/equ/forge/jcforge-1.16.5.equ",
+      "platform": "forge",
+      "minecraft_version": "1.16.5",
       "mapping": "starter",
       "description": "Starter template with modern API shapes; verify for your mapping (Intermediary/Yarn/MCP).",
       "author": "uzyfabbargama",
